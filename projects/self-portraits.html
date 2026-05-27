@@ -9,54 +9,49 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body>
+<body class="gallery-view">
 
   <header class="project-header">
     <span class="project-header-title">Self Portraits</span>
     <nav class="nav">
-        <a href="../index.html">Gallery</a>
-        <a href="../about.html">About</a>
-        <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
-      </nav>
+      <a href="../index.html">Gallery</a>
+      <a href="../about.html">About</a>
+      <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
+    </nav>
   </header>
 
-  <main class="wrap">
+  <div class="gallery-stage">
+    <button class="nav-arrow prev" aria-label="Previous photo">
+      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="60,0 30,20 60,40"/>
+        <polygon points="30,0 0,20 30,40"/>
+      </svg>
+    </button>
+    <div class="photo-frame">
+      <img id="gallery-img" src="" alt="">
+    </div>
+    <button class="nav-arrow next" aria-label="Next photo">
+      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,0 30,20 0,40"/>
+        <polygon points="30,0 60,20 30,40"/>
+      </svg>
+    </button>
+  </div>
 
-    <article class="project-body">
+  <div class="gallery-footer">
+    <span class="gallery-photo-title" id="gallery-photo-title"></span>
+    <a class="gallery-next" href="streets-in-color.html">Streets in Color →</a>
+  </div>
 
-      <p>These images use motion blur and long exposure to push the self-portrait beyond documentation. The result is less about what I look like and more about what it feels like to be in a body — moving, uncertain, present.</p>
-
-      <div class="num-row">
-        <div class="num-side"><span class="seq-num">01</span><p class="img-caption">Long exposure</p></div>
-        <img class="expandable" loading="lazy" src="../images/self-portraits/owennguyenmotion1.jpg" alt="Self Portraits — 01">
-      </div>
-      <div class="num-row">
-        <div class="num-side"><span class="seq-num">02</span><p class="img-caption">Long exposure</p></div>
-        <img class="expandable" loading="lazy" src="../images/self-portraits/owennguyenmotion2.jpg" alt="Self Portraits — 02">
-      </div>
-      <div class="num-row">
-        <div class="num-side"><span class="seq-num">03</span><p class="img-caption">Long exposure</p></div>
-        <img class="expandable" loading="lazy" src="../images/self-portraits/owennguyenmotion3.jpg" alt="Self Portraits — 03">
-      </div>
-      <div class="num-row">
-        <div class="num-side"><span class="seq-num">04</span><p class="img-caption">Long exposure</p></div>
-        <img class="expandable" loading="lazy" src="../images/self-portraits/owennguyenmotion4.jpg" alt="Self Portraits — 04">
-      </div>
-
-    </article>
-
-    <nav class="next-project">
-      <span class="label">Next</span>
-      <a href="streets-in-color.html">Streets in Color →</a>
-    </nav>
-
-  </main>
-
-  <footer class="site-footer">
-    <span>© 2026 Owen Nguyen</span>
-    <span><a href="mailto:owenportnguyen@icloud.com">owenportnguyen@icloud.com</a></span>
-  </footer>
-
+  <script>
+    const photos = [
+      { src: "../images/self-portraits/owennguyenmotion1.jpg", alt: "Self Portraits — 01", caption: "Long exposure" },
+      { src: "../images/self-portraits/owennguyenmotion2.jpg", alt: "Self Portraits — 02", caption: "Long exposure" },
+      { src: "../images/self-portraits/owennguyenmotion3.jpg", alt: "Self Portraits — 03", caption: "Long exposure" },
+      { src: "../images/self-portraits/owennguyenmotion4.jpg", alt: "Self Portraits — 04", caption: "Long exposure" },
+    ];
+  </script>
+  <script src="../gallery.js"></script>
   <script src="../cursor.js"></script>
 
 </body>
