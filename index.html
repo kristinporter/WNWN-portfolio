@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Owen Nguyen — Portfolio</title>
+  <meta name="description" content="Selected work by Owen Nguyen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+
+  <header class="site-header">
+    <a href="index.html" class="logo">Owen Nguyen</a>
+    <div class="header-right">
+      <nav class="nav">
+        <a href="index.html" aria-current="page">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="gallery-stage">
+
+    <div class="cover-row">
+      <button class="nav-arrow prev" aria-label="Previous project">
+        <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="60,0 30,20 60,40"/>
+          <polygon points="30,0 0,20 30,40"/>
+        </svg>
+      </button>
+
+      <div class="cover-area">
+        <a id="cover-link" class="cover" href="projects/sample-project.html">
+          <span class="cover-placeholder" id="cover-placeholder">PROJECT COVER</span>
+          <img id="cover-img" src="" alt="" onerror="this.style.display='none'">
+        </a>
+      </div>
+
+      <button class="nav-arrow next" aria-label="Next project">
+        <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,0 30,20 0,40"/>
+          <polygon points="30,0 60,20 30,40"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="cover-meta">
+      <div class="progress">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <h2 class="project-title" id="project-title">PROJECT TITLE</h2>
+      <p class="project-category" id="project-category">project category</p>
+    </div>
+
+  </main>
+
+  <script>
+    // Edit this array to add, remove, or reorder projects.
+    const projects = [
+      { title: "People of Telegraph",  category: "Documentary · Portrait",   image: "images/Telegraph_cover.jpg",                          url: "projects/people-of-telegraph.html" },
+      { title: "Family",              category: "Documentary · Portrait",   image: "images/family/family project photo cover .jpg",       url: "projects/family.html" },
+      { title: "Portrait Photography",category: "Portrait · Studio",        image: "images/portrait photography/portrait photography cover.jpg", url: "projects/portrait-photography.html" },
+      { title: "Self Portraits",      category: "Self Portrait · Motion",   image: "images/self portraits/self portraits cover photo.jpg", url: "projects/self-portraits.html" },
+      { title: "Streets in Color",    category: "Street · Color",           image: "images/streets in color/photo cover.jpg",             url: "projects/streets-in-color.html" },
+    ];
+
+    const coverImg     = document.getElementById('cover-img');
+    const coverLink    = document.getElementById('cover-link');
+    const placeholder  = document.getElementById('cover-placeholder');
+    const titleEl      = document.getElementById('project-title');
+    const categoryEl   = document.getElementById('project-category');
+    const fillEl       = document.getElementById('progress-fill');
+    const prevBtn      = document.querySelector('.prev');
+    const nextBtn      = document.querySelector('.next');
+
+    let current = 0;
+
+    function render() {
+      const p = projects[current];
+      coverImg.style.display = '';
+      coverImg.src = p.image;
+      coverImg.alt = p.title;
+      coverLink.href = p.url;
+      placeholder.textContent = p.title.toUpperCase();
+      titleEl.textContent = p.title.toUpperCase();
+      categoryEl.textContent = p.category;
+
+      // Progress bar: a 1/N-wide segment slides left-to-right
+      const segWidth = 100 / projects.length;
+      fillEl.style.left  = (current * segWidth) + '%';
+      fillEl.style.width = segWidth + '%';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      current = (current - 1 + projects.length) % projects.length;
+      render();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      current = (current + 1) % projects.length;
+      render();
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  prevBtn.click();
+      if (e.key === 'ArrowRight') nextBtn.click();
+    });
+
+    render();
+  </script>
+
+  <script src="cursor.js"></script>
+
+</body>
+</html>

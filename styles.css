@@ -1,0 +1,612 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #F0F0F0;
+  --ink: #000000;
+  --muted: #000000;
+  --rule: #000000;
+  --accent: #000000;
+  --serif: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Menlo", monospace;
+  --max: 1240px;
+  --gutter: clamp(20px, 4vw, 56px);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { max-width: 100%; display: block; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Base ---------- */
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Custom cursor ---------- */
+/* A small circle that follows the mouse. mix-blend-mode: difference
+   inverts whatever pixels are behind it — white over dark = light,
+   white over light = dark. The default system cursor is hidden so
+   only the custom one shows. */
+@media (hover: hover) {
+  html, body, a, button { cursor: none; }
+}
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  transition: opacity .15s ease, width .2s ease, height .2s ease;
+}
+.cursor--hidden { opacity: 0; }
+/* Respect users who prefer less motion / want their normal cursor back. */
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  html, body, a, button { cursor: auto; }
+  .cursor { display: none; }
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Project page header (project name left, nav right) ---------- */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.project-header-title {
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 18px var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.logo {
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 52px;
+  letter-spacing: 0.06em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  justify-self: start;
+  margin-left: 0;
+}
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 18px;
+}
+.nav {
+  display: flex;
+  gap: 36px;
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav a { color: var(--ink); transition: opacity .15s ease; }
+.nav a:hover { opacity: 0.6; }
+.nav a[aria-current="page"] {
+  text-decoration: none;
+}
+.nav a[aria-current="page"]::before { content: '['; margin-right: 2px; }
+.nav a[aria-current="page"]::after  { content: ']'; margin-left:  2px; }
+
+/* Email tooltip on Contact link */
+.nav-contact {
+  position: relative;
+}
+.nav-contact .email-tip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: "Archivo", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding: 6px 10px;
+  pointer-events: none;
+}
+.nav-contact.show .email-tip {
+  display: block;
+}
+
+/* ---------- Gallery stage (carousel) ---------- */
+.gallery-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(16px, 3vw, 32px) var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.cover-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 56px);
+}
+.cover-meta {
+  width: 100%;
+  max-width: min(560px, 62vh);
+}
+.nav-arrow {
+  background: none;
+  border: none;
+  cursor: none;
+  color: var(--ink);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s ease, opacity .15s ease;
+  flex-shrink: 0;
+}
+.nav-arrow:hover { transform: scale(1.08); }
+.nav-arrow:active { transform: scale(0.96); }
+.nav-arrow svg {
+  width: clamp(40px, 5vw, 72px);
+  height: auto;
+  display: block;
+}
+.cover-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(560px, 62vh);
+  flex-shrink: 0;
+}
+.cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--ink);
+  overflow: hidden;
+  transition: transform .25s ease;
+}
+.cover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.cover-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-align: center;
+  padding: 24px;
+  z-index: 0;
+}
+.progress {
+  width: 100%;
+  height: 3px;
+  background: #d0d0d0;
+  margin-top: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--ink);
+  transition: left .35s cubic-bezier(.4,.0,.2,1), width .35s cubic-bezier(.4,.0,.2,1);
+}
+.project-title {
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 1.8vw, 22px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 14px 0 4px;
+  text-align: center;
+  color: var(--ink);
+}
+.project-category {
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: clamp(64px, 12vw, 160px) 0 clamp(48px, 8vw, 96px);
+  border-bottom: 1px solid var(--rule);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(48px, 9vw, 132px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  max-width: 14ch;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero .lede {
+  font-size: clamp(18px, 1.6vw, 22px);
+  max-width: 52ch;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- Section heading ---------- */
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 64px 0 32px;
+}
+.section-head .label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.section-head .count {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- Project grid ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 48px 32px;
+  padding-bottom: 96px;
+}
+.project-card {
+  grid-column: span 6;
+  display: block;
+}
+.project-card:nth-child(3n) { grid-column: span 12; } /* every 3rd full-width for rhythm */
+.project-card .thumb {
+  aspect-ratio: 4 / 3;
+  background: #d8d8d8;
+  overflow: hidden;
+  margin-bottom: 16px;
+  transition: transform .4s ease;
+}
+.project-card:nth-child(3n) .thumb { aspect-ratio: 16 / 9; }
+.project-card:hover .thumb { transform: translateY(-4px); }
+.project-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.project-card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.project-card h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.project-card .year {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+.project-card .tag {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+/* ---------- Project page ---------- */
+.project-hero {
+  padding: clamp(48px, 8vw, 96px) 0 clamp(32px, 5vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+.project-hero .title {
+  grid-column: 1 / span 8;
+}
+.project-hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+.project-hero .lede {
+  font-size: clamp(18px, 1.6vw, 22px);
+  max-width: 56ch;
+  color: var(--muted);
+  margin: 0;
+}
+.project-hero .info {
+  grid-column: 10 / span 3;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  align-self: end;
+}
+.project-hero .info dt { text-transform: uppercase; letter-spacing: 0.08em; margin-top: 14px; }
+.project-hero .info dd { color: var(--ink); margin: 4px 0 0; font-family: var(--sans); font-size: 15px; }
+
+.project-body {
+  padding: clamp(48px, 8vw, 96px) 0;
+}
+.project-body p {
+  max-width: 62ch;
+  margin: 0 auto 32px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+.project-body .figure {
+  margin: 64px 0;
+}
+.project-body .figure img {
+  width: 100%;
+  background: #d8d8d8;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+.project-body .figure figcaption {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.project-body .two-up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 64px 0;
+}
+.project-body .two-up img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: #d8d8d8;
+}
+
+.next-project {
+  border-top: 1px solid var(--rule);
+  padding: 64px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.next-project .label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.next-project a {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 48px);
+  letter-spacing: -0.01em;
+}
+.next-project a:hover { color: var(--accent); }
+
+/* ---------- About ---------- */
+
+/* Name + portrait hero — OWEN [photo] NGUYEN */
+.about-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(48px, 7vw, 96px) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  gap: clamp(16px, 3vw, 48px);
+  overflow: hidden;
+}
+.about-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(56px, 10vw, 160px);
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+  flex-shrink: 1;
+}
+.about-portrait {
+  position: relative;
+  width: clamp(140px, 22vw, 300px);
+  aspect-ratio: 2 / 3;
+  background: var(--ink);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.about-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(100%) contrast(1.05);
+  display: block;
+}
+.about-portrait-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  font-family: "Archivo", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Bio + metadata below the hero */
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 64px;
+  padding: clamp(48px, 7vw, 96px) var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.about-lead {
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(22px, 2.8vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 32px;
+}
+.about-bio p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 20px;
+  color: var(--ink);
+  max-width: 54ch;
+}
+.about-meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+  align-self: start;
+  padding-top: 8px;
+}
+.about-meta dt {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 24px;
+  font-size: 11px;
+}
+.about-meta dt:first-child { margin-top: 0; }
+.about-meta dd {
+  color: var(--ink);
+  margin: 5px 0 0;
+  font-family: "Archivo", sans-serif;
+  font-size: 15px;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.94);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+.lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 48px var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 14px;
+  color: var(--muted);
+}
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--ink); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .project-card { grid-column: span 12 !important; }
+  .project-hero .title, .project-hero .info { grid-column: 1 / -1; }
+  .project-body .two-up { grid-template-columns: 1fr; }
+  .nav { gap: 18px; }
+
+  /* About page */
+  .about-hero { gap: clamp(8px, 3vw, 20px); }
+  .about-name { font-size: clamp(36px, 9vw, 72px); }
+  .about-portrait { width: clamp(100px, 28vw, 180px); }
+  .about-body { grid-template-columns: 1fr; gap: 48px; }
+
+  /* Header stacks */
+  .site-header { grid-template-columns: 1fr; }
+  .header-right { align-items: flex-start; }
+  /* Gallery stage: arrows move below the cover on mobile */
+  .cover-row {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .cover-area { order: 1; max-width: 100%; width: 100%; }
+  .nav-arrow.prev  { order: 2; }
+  .nav-arrow.next  { order: 3; }
+  .nav-arrow svg { width: 44px; }
+  .cover-meta { max-width: 100%; }
+}
