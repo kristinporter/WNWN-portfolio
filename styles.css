@@ -1,9 +1,9 @@
 /* ---------- Design tokens ---------- */
 :root {
-  --bg: #F0F0F0;
-  --ink: #000000;
-  --muted: #000000;
-  --rule: #000000;
+  --bg: #EEEEEE;
+  --ink: #151515;
+  --muted: #5a5a5a;
+  --rule: #c9c9c9;
   --accent: #000000;
   --serif: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -582,6 +582,14 @@ body {
 }
 .site-footer a { color: var(--muted); }
 .site-footer a:hover { color: var(--ink); }
+
+/* ---------- Project page — numbered sequence layout ---------- */
+.num-row { display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: start; margin-bottom: 56px; }
+.num-side { display: flex; flex-direction: column; gap: 10px; }
+.seq-num { font-family: "Archivo", sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.1em; line-height: 1.4; color: var(--muted); text-transform: uppercase; user-select: none; }
+.img-caption { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0; line-height: 1.6; }
+.num-row img { width: 100%; height: auto; display: block; aspect-ratio: unset; object-fit: unset; transition: opacity .15s ease; }
+.num-row img:hover { opacity: 0.85; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 720px) {
