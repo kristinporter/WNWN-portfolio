@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-05-27 — Session 6
+
+**Photo labels use gallery name + number on one line**
+
+- Updated `.num-side` to `flex-direction: row` so number and name sit on one line (e.g., `01 Family`).
+- Matched `.img-caption` font to `.seq-num`: both now 13px, weight 400, same tracking.
+- Changed `.num-row` column from fixed `120px` to `auto` so longer names like "Streets in Color" don't overflow.
+- Updated captions in all 5 project pages to use the gallery name instead of generic labels ("Home" → "Family", "Street" → "Streets in Color", etc.).
+
+---
+
 ## 2026-05-27 — Session 5
 
 **Reverted fullscreen gallery**
