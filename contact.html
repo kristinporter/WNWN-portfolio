@@ -23,15 +23,51 @@
   </header>
 
   <main>
-    <div class="wrap contact-body">
-      <p class="contact-note">Available for commissions and collaboration.</p>
-      <a class="contact-email" href="mailto:owenporternguyen@icloud.com">owenporternguyen@icloud.com</a>
+    <div class="contact-body">
+
+      <div class="contact-photo">
+        <img src="images/about-portrait.png" alt="Owen Nguyen">
+      </div>
+
+      <div class="contact-content">
+        <h1 class="contact-heading">Contact</h1>
+
+        <div class="contact-inner">
+          <!-- Form submissions go to Formspree — replace YOUR_FORM_ID after signing up at formspree.io -->
+          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="contact-submit">Send Message</button>
+          </form>
+
+          <div class="contact-meta">
+            <div class="contact-meta-item">
+              <p class="meta-label">Contact</p>
+              <p class="meta-value">owenporternguyen@icloud.com</p>
+            </div>
+            <div class="contact-meta-item">
+              <p class="meta-label">Based in</p>
+              <p class="meta-value">Berkeley, CA</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </main>
 
   <footer class="site-footer">
     <span>© 2026 Owen Nguyen</span>
-
   </footer>
 
   <script src="cursor.js"></script>
