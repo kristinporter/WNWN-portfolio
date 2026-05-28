@@ -104,6 +104,7 @@ body {
   justify-self: start;
   margin-left: 0;
 }
+.about-page .logo { visibility: hidden; }
 .header-right {
   display: flex;
   flex-direction: column;
@@ -457,7 +458,7 @@ body {
 /* Name + portrait hero — OWEN [photo] NGUYEN */
 .about-hero {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   padding: clamp(48px, 7vw, 96px) var(--gutter);
   border-bottom: 1px solid var(--rule);
@@ -466,7 +467,7 @@ body {
 }
 .about-name {
   font-family: "Bebas Neue", sans-serif;
-  font-size: clamp(56px, 10vw, 160px);
+  font-size: clamp(98px, 17.5vw, 280px);
   line-height: 1;
   color: var(--ink);
   white-space: nowrap;
@@ -474,9 +475,8 @@ body {
 }
 .about-portrait {
   position: relative;
-  width: clamp(140px, 22vw, 300px);
+  width: clamp(105px, 16.5vw, 225px);
   aspect-ratio: 2 / 3;
-  background: var(--ink);
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -606,8 +606,8 @@ body {
 
   /* About page */
   .about-hero { gap: clamp(8px, 3vw, 20px); }
-  .about-name { font-size: clamp(36px, 9vw, 72px); }
-  .about-portrait { width: clamp(100px, 28vw, 180px); }
+  .about-name { font-size: clamp(63px, 15.75vw, 126px); }
+  .about-portrait { width: clamp(75px, 21vw, 135px); }
   .about-body { grid-template-columns: 1fr; gap: 48px; }
 
   /* Project gallery */
