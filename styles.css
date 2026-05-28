@@ -155,7 +155,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(16px, 3vw, 32px) var(--gutter);
+  padding: clamp(54px, 6vw, 70px) var(--gutter) clamp(16px, 3vw, 32px);
   max-width: var(--max);
   margin: 0 auto;
 }
