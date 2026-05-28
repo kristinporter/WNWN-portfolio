@@ -585,7 +585,7 @@ body {
   align-items: start;
 }
 .contact-photo {
-  width: clamp(180px, 22vw, 280px);
+  width: clamp(270px, 33vw, 420px);
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
@@ -600,6 +600,7 @@ body {
 .contact-content {
   display: flex;
   flex-direction: column;
+  padding-left: 76px;
 }
 .contact-heading {
   font-family: "Archivo", sans-serif;
