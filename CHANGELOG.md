@@ -13,9 +13,29 @@
 
 ## 2026-05-27 — Session 5
 
-**Reverted fullscreen gallery**
+**Reverted fullscreen gallery** *(reverts Sessions 3 & 4)*
 
-- Reverted Sessions 3 & 4 (fullscreen slideshow on project pages). All 5 project pages are back to the scrolling numbered-sequence layout. `gallery.js` removed. Gallery CSS removed from `styles.css`.
+- All 5 project pages restored to scrolling numbered-sequence layout. `gallery.js` removed. Gallery CSS removed from `styles.css`.
+
+---
+
+## 2026-05-26 — Session 4 *(reverted in Session 5)*
+
+**Gallery bug fixes**
+
+- Fixed arrows appearing above/below photo instead of on sides — missing `flex-direction: row` override on `.gallery-stage`.
+- Added `FAMILY — 01 / 07` photo title label to gallery footer; `gallery.js` reads project name from `.project-header-title` so no per-page data needed.
+- Updated footer HTML on all 5 project pages to new `gallery-photo-title` + `gallery-next` structure.
+
+---
+
+## 2026-05-26 — Session 3 *(reverted in Session 5)*
+
+**Fullscreen gallery slideshow**
+
+- Replaced scrolling numbered-sequence layout on all 5 project pages with a fullscreen slideshow: one photo at a time, fills the viewport (`object-fit: contain`), hard-cut navigation.
+- Added `gallery.js`: shared script used by all project pages. Each page defines a `photos` array; handles prev/next, keyboard arrows, touch swipe, and preloads next image.
+- Added gallery CSS to `styles.css`: `.gallery-view` body is a `100dvh` flex column, no scroll. Photo frame fills space between header and slim footer bar.
 
 ---
 
