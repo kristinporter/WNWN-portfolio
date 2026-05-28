@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-05-27 — Session 9
+
+**Revised gallery intro text across all 5 project pages**
+
+- People of Telegraph: sharpened from hedging "attempt to slow down" to "a record of looking."
+- Family: led with the core idea ("Familiarity makes people invisible") instead of burying it.
+- Studio Portraits: tightened opening; fixed British "contextualise" → removed entirely.
+- Self Portraits: removed clinical "These images use" opening; preserved the strong closing trio.
+- Streets in Color: tightened the trailing preposition; clarified the color-as-composition idea.
+
+---
+
 ## 2026-05-27 — Session 8
 
 **Align intro text with photo left edge**
