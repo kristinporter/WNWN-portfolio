@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-05-27 — Session 8
+
+**Align intro text with photo left edge**
+
+- `.num-row` first column changed from `auto` to fixed `200px` so alignment is predictable across all label lengths.
+- `.project-body > p:first-child` given `margin-left: 224px` (200px col + 24px gap) to match photo left edge.
+- Mobile override resets both to natural widths at ≤720px.
+
+---
+
+## 2026-05-27 — Session 7
+
+**Fix photo label size mismatch; match gallery name to nav**
+
+- `.img-caption` was being overridden to 18px by `.project-body p` (higher specificity); fixed by scoping to `.num-side .img-caption` — number and name now both render at 13px.
+- `.project-header-title` bumped from 13px to 17px to match the nav links on the right.
+
+---
+
 ## 2026-05-27 — Session 6
 
 **Photo labels use gallery name + number on one line**
