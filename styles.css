@@ -460,7 +460,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: clamp(48px, 7vw, 96px) var(--gutter);
+  padding: clamp(12px, 1.5vw, 20px) var(--gutter) clamp(20px, 2.5vw, 36px);
   border-bottom: 1px solid var(--rule);
   gap: clamp(16px, 3vw, 48px);
   overflow: hidden;
@@ -505,8 +505,8 @@ body {
 .about-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px 64px;
-  padding: clamp(48px, 7vw, 96px) var(--gutter);
+  gap: 24px 64px;
+  padding: clamp(20px, 2.5vw, 36px) var(--gutter);
   max-width: var(--max);
   margin: 0 auto;
 }
@@ -517,12 +517,12 @@ body {
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--ink);
-  margin: 0 0 32px;
+  margin: 0 0 16px;
 }
 .about-bio p {
   font-size: 18px;
   line-height: 1.7;
-  margin: 0 0 20px;
+  margin: 0 0 12px;
   color: var(--ink);
   max-width: 54ch;
 }
@@ -537,7 +537,7 @@ body {
 .about-meta dt {
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-top: 24px;
+  margin-top: 16px;
   font-size: 11px;
 }
 .about-meta dt:first-child { margin-top: 0; }
@@ -573,6 +573,30 @@ body {
   display: block;
   object-fit: contain;
 }
+
+/* ---------- Contact ---------- */
+.contact-body {
+  padding: clamp(64px, 10vw, 140px) var(--gutter);
+}
+.contact-label {
+  font-family: "Archivo", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.contact-email {
+  display: block;
+  font-family: "Archivo", sans-serif;
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.contact-email:hover { text-decoration: underline; }
 
 /* ---------- Footer ---------- */
 .site-footer {
