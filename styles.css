@@ -10,6 +10,7 @@
   --mono: ui-monospace, "SF Mono", "Menlo", monospace;
   --max: 1240px;
   --gutter: clamp(20px, 4vw, 56px);
+  --label-col: 200px; /* project page label column width; also drives intro paragraph indent */
 }
 
 /* ---------- Reset ---------- */
@@ -67,7 +68,7 @@ body {
 /* ---------- Project page header (project name left, nav right) ---------- */
 .project-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 24px var(--gutter);
   max-width: var(--max);
@@ -80,6 +81,7 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
+  margin-left: calc(var(--label-col) + 24px);
 }
 
 /* ---------- Header ---------- */
@@ -396,7 +398,7 @@ body {
   line-height: 1.7;
 }
 .project-body > p:first-child {
-  margin-left: 224px;
+  margin-left: calc(var(--label-col) + 24px); /* 24px = .num-row gap */
   margin-right: 0;
 }
 .project-body .figure {
@@ -588,7 +590,7 @@ body {
 .site-footer a:hover { color: var(--ink); }
 
 /* ---------- Project page — numbered sequence layout ---------- */
-.num-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: start; margin-bottom: 56px; }
+.num-row { display: grid; grid-template-columns: var(--label-col) 1fr; gap: 24px; align-items: start; margin-bottom: 56px; }
 .num-side { display: flex; flex-direction: row; align-items: baseline; gap: 8px; }
 .seq-num { font-family: "Archivo", sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.1em; line-height: 1.4; color: var(--muted); text-transform: uppercase; user-select: none; }
 .num-side .img-caption { font-family: "Archivo", sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.1em; line-height: 1.4; text-transform: uppercase; color: var(--muted); margin: 0; }
@@ -611,6 +613,7 @@ body {
   /* Project gallery */
   .num-row { grid-template-columns: auto 1fr; }
   .project-body > p:first-child { margin-left: 0; }
+  .project-header-title { margin-left: 0; }
 
   /* Header stacks */
   .site-header { grid-template-columns: 1fr; }

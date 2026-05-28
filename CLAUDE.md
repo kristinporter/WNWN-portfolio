@@ -4,7 +4,7 @@ This is a personal portfolio website for visual / design work, hand-coded in sta
 
 ## What we're building
 
-A small portfolio site (3–5 projects to start, expected to grow). The site name is **WNWN**, displayed as a wordmark in the top-left of every page. The homepage is a single-project-at-a-time gallery carousel — projects are browsed one by one with prev/next controls — not a grid. Each project has its own page with a hero, body copy, and figure blocks.
+A small portfolio site (5 projects currently, expected to grow). The site name is **WNWN**. The homepage is a single-project-at-a-time gallery carousel — projects are browsed one by one with prev/next controls — not a grid. Each project has its own page with an intro paragraph and a numbered photo sequence.
 
 ## Design language
 
@@ -32,30 +32,56 @@ No accent color. If a moment of contrast is needed, use pure black or invert (li
 
 ## Typography
 
-**Bebas Neue** (Google Fonts) for the **WNWN wordmark only** — condensed, all-caps display sans, single weight. Set at **120px**, line-height `0.85`, no extra letter-spacing.
+**Archivo** (Google Fonts) is used for all UI text — headings, nav, labels, project metadata, body copy. Both `--serif` and `--sans` CSS tokens point to Archivo. Weights 400 / 500 / 600 / 700 are loaded.
 
-**Space Grotesk** (Google Fonts) for everything else — headings, nav, labels, project metadata, and body. Weights 400 / 500 / 600 / 700 are loaded. If a mono treatment is ever needed for metadata, pair with **Space Mono** or **JetBrains Mono**.
+**Bebas Neue** (Google Fonts) is loaded and used on the About page name display (`OWEN [photo] NGUYEN` hero). Not used elsewhere.
+
+**Space Grotesk** (Google Fonts) is loaded but currently unused. The switch from Archivo to Space Grotesk is an open decision (see below).
+
+For the homepage logo (`.logo`): Archivo 700, 52px, uppercase, letter-spacing 0.06em.
+
+For nav and project page header title (`.project-header-title`): Archivo 500, 17px, uppercase, letter-spacing 0.08em.
 
 Type rules:
-- Wordmark and project titles are uppercase and confident in scale.
-- Metadata (years, categories, project numbers) is monospaced or in a mono-style label treatment, with letter-spacing tracked open (~`0.08em` – `0.12em`).
-- Body copy stays at 17–19px, line-height ~1.55–1.7.
+- Project page header title and nav links match in size (both 17px) and letter-spacing (0.08em).
+- Photo label numbers (`.seq-num`) and gallery names (`.img-caption`) match: both 13px, weight 400, letter-spacing 0.1em, uppercase.
+- Body copy: 18px, line-height 1.7.
+- Metadata uses `--mono` (system monospace) for secondary labels and `--muted` color.
 
 ## Layout principles
 
 - **Generous gutters, generous whitespace.** The page should breathe.
-- **12-column thinking, but break the grid when it serves the work.** Projects can span full bleed; intro paragraphs can sit in a narrow column.
-- **Editorial pacing.** Project pages alternate between full-bleed figures, two-up image pairs, and narrow text columns — like a magazine spread.
-- **The header is consistent across all pages:** WNWN wordmark left, nav links right, optionally a short intro paragraph beneath the nav on the home page.
+- **12-column thinking, but break the grid when it serves the work.**
+- **The header is consistent across all pages:** site name / wordmark left, nav links right.
+
+### Project page layout (actual implementation)
+
+Each project page uses a **numbered sequence layout**:
+
+- One `.num-row` per photo: CSS grid with `grid-template-columns: var(--label-col) 1fr; gap: 24px`.
+- `.num-side` inside the label column: `flex-direction: row; align-items: baseline; gap: 8px` — displays `01 Family` on one line.
+- The intro paragraph (`.project-body > p:first-child`) has `margin-left: calc(var(--label-col) + 24px)` to align its left edge with the photo column.
+- **`--label-col: 200px`** is the single source of truth for the column width. If you change the label column width, change only `--label-col` in `:root` — both the grid and the intro indent will update automatically.
+- Mobile (≤720px): `.num-row` reverts to `auto 1fr`; intro margin-left resets to 0.
 
 ## Technical approach
 
-- **Static HTML + CSS only.** No frameworks, no build step, no JavaScript dependencies beyond small vanilla scripts for behavior (e.g. the carousel, the custom cursor in `cursor.js`).
+- **Static HTML + CSS only.** No frameworks, no build step, no JavaScript dependencies beyond small vanilla scripts for behavior (the carousel, the custom cursor in `cursor.js`).
 - **One stylesheet (`styles.css`).** Design tokens at the top in `:root`. Everything else is component-scoped via classes.
-- **Project data lives in the `projects` array** at the bottom of `index.html`. Adding a project means adding an entry there and duplicating `projects/sample-project.html` as a template.
+- **Project data lives in the `projects` array** in `index.html`. Adding a project means adding an entry there and duplicating an existing project page as a template.
 - **Each project page** is a standalone HTML file in `projects/`. Templates should remain hand-editable — readable HTML, no clever abstractions.
-- **Images** go in `images/`. File names use dashes, not spaces. Resize to ~2000px wide max before adding.
+- **Images** go in `images/`. File names use dashes, not spaces. Resize to ~2000px wide max before adding. Images are excluded from git (`.gitignore`).
 - **Hosting target** is a free static host (Netlify, GitHub Pages, or Cloudflare Pages). Nothing in the build should require server-side processing.
+
+## Current projects (5)
+
+1. People of Telegraph — `projects/people-of-telegraph.html`
+2. Family — `projects/family.html`
+3. Studio Portraits — `projects/studio-portraits.html`
+4. Self Portraits — `projects/self-portraits.html`
+5. Streets in Color — `projects/streets-in-color.html`
+
+The "Next →" links at the bottom of each page form a cycle in this order.
 
 ## When in doubt
 
@@ -66,6 +92,7 @@ Type rules:
 
 ## Open decisions / to revisit
 
+- **Font**: Archivo vs. Space Grotesk — Space Grotesk is loaded but unused. Decision pending.
 - Whether to add: marquee/scrolling text bar, slide transitions on the carousel, large project-number graphics behind the cover.
 - Whether to swap the soft progress bar for typographic numbered chapters (`01 — 02 — 03 — 04`), with the current one bolded/underlined.
-- Author / personal name — separate from the WNWN brand, used in footer copyright and bio. Currently a placeholder.
+- About page: content, portrait image, favicon, `<meta name="description">` tag.

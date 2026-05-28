@@ -1,5 +1,44 @@
 # Changelog
 
+## 2026-05-27 — Session 13
+
+**Fix nav position on project pages after title removal**
+
+- `.project-header` changed from `justify-content: space-between` to `justify-content: flex-end` so the nav sits at the same right edge as on the homepage.
+
+---
+
+## 2026-05-27 — Session 12
+
+**Remove gallery name from top-left of all project pages**
+
+- Removed `<span class="project-header-title">` from all 5 project pages (`people-of-telegraph.html`, `family.html`, `studio-portraits.html`, `self-portraits.html`, `streets-in-color.html`). Nav (Gallery / About / Contact) remains.
+
+**Add about portrait to About page**
+
+- Renamed `images/about portrait.png` → `images/about-portrait.png` (dash convention).
+- Updated `about.html` portrait `src` to `images/about-portrait.png`; removed placeholder span.
+
+---
+
+## 2026-05-27 — Session 11
+
+**Align project header title with photo names and intro text**
+
+- Added `margin-left: calc(var(--label-col) + 24px)` to `.project-header-title` so the gallery name in the top-left shares the same left edge as the intro paragraph and the photo images.
+- Added `margin-left: 0` reset for `.project-header-title` in the ≤720px mobile breakpoint.
+
+---
+
+## 2026-05-27 — Session 10
+
+**Fix intro-text alignment fragility; update CLAUDE.md**
+
+- Added `--label-col: 200px` to `:root` in `styles.css`. `.num-row` now uses `var(--label-col)` for its grid column, and `.project-body > p:first-child` uses `calc(var(--label-col) + 24px)` for its indent. Changing the label column width now requires editing only one token.
+- Rewrote `CLAUDE.md` to match what's actually built: Archivo is the font in use (Space Grotesk open decision noted), homepage logo is Archivo 52px (not Bebas Neue 120px), project pages use numbered-sequence layout (not hero/figure blocks), `--label-col` documented as the coupling token, current 5 projects listed.
+
+---
+
 ## 2026-05-27 — Session 9
 
 **Revised gallery intro text across all 5 project pages**
