@@ -581,7 +581,7 @@ body {
   align-items: start;
 }
 .contact-photo {
-  width: clamp(270px, 33vw, 420px);
+  width: clamp(297px, 36.3vw, 462px);
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
