@@ -577,7 +577,7 @@ body {
   gap: 32px;
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 72px) var(--gutter) clamp(48px, 8vw, 96px);
+  padding: clamp(40px, 6vw, 72px) var(--gutter) clamp(48px, 8vw, 96px) calc(var(--gutter) + 57px);
   align-items: start;
 }
 .contact-photo {
