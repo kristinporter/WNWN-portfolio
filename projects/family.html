@@ -9,52 +9,66 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body class="gallery-view">
+<body>
 
   <header class="project-header">
     <span class="project-header-title">Family</span>
     <nav class="nav">
-      <a href="../index.html">Gallery</a>
-      <a href="../about.html">About</a>
-      <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
-    </nav>
+        <a href="../index.html">Gallery</a>
+        <a href="../about.html">About</a>
+        <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
+      </nav>
   </header>
 
-  <div class="gallery-stage">
-    <button class="nav-arrow prev" aria-label="Previous photo">
-      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="60,0 30,20 60,40"/>
-        <polygon points="30,0 0,20 30,40"/>
-      </svg>
-    </button>
-    <div class="photo-frame">
-      <img id="gallery-img" src="" alt="">
-    </div>
-    <button class="nav-arrow next" aria-label="Next photo">
-      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0,0 30,20 0,40"/>
-        <polygon points="30,0 60,20 30,40"/>
-      </svg>
-    </button>
-  </div>
+  <main class="wrap">
 
-  <div class="gallery-footer">
-    <span class="gallery-photo-title" id="gallery-photo-title"></span>
-    <a class="gallery-next" href="studio-portraits.html">Studio Portraits →</a>
-  </div>
+    <article class="project-body">
 
-  <script>
-    const photos = [
-      { src: "../images/family/owennguyen.wrkxfam1.jpg",  alt: "Family — 01", caption: "Home" },
-      { src: "../images/family/owennguyen.wrkxfam2.jpg",  alt: "Family — 02", caption: "Home" },
-      { src: "../images/family/owennguyen.wrkxfam5.jpg",  alt: "Family — 03", caption: "Home" },
-      { src: "../images/family/owennguyen.wrkxfam6.jpg",  alt: "Family — 04", caption: "Home" },
-      { src: "../images/family/owennguyen.wrkxfam8.jpg",  alt: "Family — 05", caption: "Home" },
-      { src: "../images/family/owennguyen.wrkxfam9.jpg",  alt: "Family — 06", caption: "Home" },
-      { src: "../images/family/owennguyen.wrkxfam11.jpg", alt: "Family — 07", caption: "Home" },
-    ];
-  </script>
-  <script src="../gallery.js"></script>
+      <p>These photographs were made close to home — in the rooms, kitchens, and backyards that hold the people I know best. The work looks at familiarity: how presence becomes invisible, and how the camera can make it visible again.</p>
+
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">01</span><p class="img-caption">Home</p></div>
+        <img class="expandable" loading="lazy" src="../images/family/owennguyen.wrkxfam1.jpg" alt="Family — 01">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">02</span><p class="img-caption">Home</p></div>
+        <img class="expandable" loading="lazy" src="../images/family/owennguyen.wrkxfam2.jpg" alt="Family — 02">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">03</span><p class="img-caption">Home</p></div>
+        <img class="expandable" loading="lazy" src="../images/family/owennguyen.wrkxfam5.jpg" alt="Family — 03">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">04</span><p class="img-caption">Home</p></div>
+        <img class="expandable" loading="lazy" src="../images/family/owennguyen.wrkxfam6.jpg" alt="Family — 04">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">05</span><p class="img-caption">Home</p></div>
+        <img class="expandable" loading="lazy" src="../images/family/owennguyen.wrkxfam8.jpg" alt="Family — 05">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">06</span><p class="img-caption">Home</p></div>
+        <img class="expandable" loading="lazy" src="../images/family/owennguyen.wrkxfam9.jpg" alt="Family — 06">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">07</span><p class="img-caption">Home</p></div>
+        <img class="expandable" loading="lazy" src="../images/family/owennguyen.wrkxfam11.jpg" alt="Family — 07">
+      </div>
+
+    </article>
+
+    <nav class="next-project">
+      <span class="label">Next</span>
+      <a href="studio-portraits.html">Studio Portraits →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Owen Nguyen</span>
+    <span><a href="mailto:owenportnguyen@icloud.com">owenportnguyen@icloud.com</a></span>
+  </footer>
+
   <script src="../cursor.js"></script>
 
 </body>

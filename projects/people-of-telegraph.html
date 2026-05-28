@@ -9,54 +9,74 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body class="gallery-view">
+<body>
 
   <header class="project-header">
     <span class="project-header-title">People of Telegraph</span>
     <nav class="nav">
-      <a href="../index.html">Gallery</a>
-      <a href="../about.html">About</a>
-      <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
-    </nav>
+        <a href="../index.html">Gallery</a>
+        <a href="../about.html">About</a>
+        <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
+      </nav>
   </header>
 
-  <div class="gallery-stage">
-    <button class="nav-arrow prev" aria-label="Previous photo">
-      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="60,0 30,20 60,40"/>
-        <polygon points="30,0 0,20 30,40"/>
-      </svg>
-    </button>
-    <div class="photo-frame">
-      <img id="gallery-img" src="" alt="">
-    </div>
-    <button class="nav-arrow next" aria-label="Next photo">
-      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0,0 30,20 0,40"/>
-        <polygon points="30,0 60,20 30,40"/>
-      </svg>
-    </button>
-  </div>
+  <main class="wrap">
 
-  <div class="gallery-footer">
-    <span class="gallery-photo-title" id="gallery-photo-title"></span>
-    <a class="gallery-next" href="family.html">Family →</a>
-  </div>
+    <article class="project-body">
 
-  <script>
-    const photos = [
-      { src: "../images/telegraph-project/owennguyen.indept1.jpg", alt: "People of Telegraph — 01", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept2.jpg", alt: "People of Telegraph — 02", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept3.jpg", alt: "People of Telegraph — 03", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept4.jpg", alt: "People of Telegraph — 04", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept5.jpg", alt: "People of Telegraph — 05", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept6.jpg", alt: "People of Telegraph — 06", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept7.jpg", alt: "People of Telegraph — 07", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept8.jpg", alt: "People of Telegraph — 08", caption: "Telegraph Ave" },
-      { src: "../images/telegraph-project/owennguyen.indept9.jpg", alt: "People of Telegraph — 09", caption: "Telegraph Ave" },
-    ];
-  </script>
-  <script src="../gallery.js"></script>
+      <p>Telegraph Avenue has always been a stage — for vendors, regulars, transients, and lifers. This series is an attempt to slow down and look at the people who give the street its texture, day after day.</p>
+
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">01</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept1.jpg" alt="People of Telegraph — 01">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">02</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept2.jpg" alt="People of Telegraph — 02">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">03</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept3.jpg" alt="People of Telegraph — 03">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">04</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept4.jpg" alt="People of Telegraph — 04">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">05</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept5.jpg" alt="People of Telegraph — 05">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">06</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept6.jpg" alt="People of Telegraph — 06">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">07</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept7.jpg" alt="People of Telegraph — 07">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">08</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept8.jpg" alt="People of Telegraph — 08">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">09</span><p class="img-caption">Telegraph Ave</p></div>
+        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept9.jpg" alt="People of Telegraph — 09">
+      </div>
+
+    </article>
+
+    <nav class="next-project">
+      <span class="label">Next</span>
+      <a href="family.html">Family →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Owen Nguyen</span>
+    <span><a href="mailto:owenportnguyen@icloud.com">owenportnguyen@icloud.com</a></span>
+  </footer>
+
   <script src="../cursor.js"></script>
 
 </body>

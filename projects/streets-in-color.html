@@ -9,53 +9,70 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body class="gallery-view">
+<body>
 
   <header class="project-header">
     <span class="project-header-title">Streets in Color</span>
     <nav class="nav">
-      <a href="../index.html">Gallery</a>
-      <a href="../about.html">About</a>
-      <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
-    </nav>
+        <a href="../index.html">Gallery</a>
+        <a href="../about.html">About</a>
+        <a href="mailto:owenportnguyen@icloud.com" class="nav-contact" id="contact-link">Contact<span class="email-tip">owenportnguyen@icloud.com</span></a>
+      </nav>
   </header>
 
-  <div class="gallery-stage">
-    <button class="nav-arrow prev" aria-label="Previous photo">
-      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="60,0 30,20 60,40"/>
-        <polygon points="30,0 0,20 30,40"/>
-      </svg>
-    </button>
-    <div class="photo-frame">
-      <img id="gallery-img" src="" alt="">
-    </div>
-    <button class="nav-arrow next" aria-label="Next photo">
-      <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0,0 30,20 0,40"/>
-        <polygon points="30,0 60,20 30,40"/>
-      </svg>
-    </button>
-  </div>
+  <main class="wrap">
 
-  <div class="gallery-footer">
-    <span class="gallery-photo-title" id="gallery-photo-title"></span>
-    <a class="gallery-next" href="people-of-telegraph.html">People of Telegraph →</a>
-  </div>
+    <article class="project-body">
 
-  <script>
-    const photos = [
-      { src: "../images/streets-in-color/owen-street-photo1.jpg", alt: "Streets in Color — 01", caption: "Street" },
-      { src: "../images/streets-in-color/owen-street-photo2.jpg", alt: "Streets in Color — 02", caption: "Street" },
-      { src: "../images/streets-in-color/owen-street-photo3.jpg", alt: "Streets in Color — 03", caption: "Street" },
-      { src: "../images/streets-in-color/owen-street-photo4.jpg", alt: "Streets in Color — 04", caption: "Street" },
-      { src: "../images/streets-in-color/owen-street-photo5.jpg", alt: "Streets in Color — 05", caption: "Street" },
-      { src: "../images/streets-in-color/owen-street-photo7.jpg", alt: "Streets in Color — 06", caption: "Street" },
-      { src: "../images/streets-in-color/owen-street-photo8.jpg", alt: "Streets in Color — 07", caption: "Street" },
-      { src: "../images/streets-in-color/owen-street-photo9.jpg", alt: "Streets in Color — 08", caption: "Street" },
-    ];
-  </script>
-  <script src="../gallery.js"></script>
+      <p>Shooting in color changes what you notice. Shadow becomes a question of hue; a person becomes inseparable from the wall they stand in front of. This series chases those moments where color is doing more than describing — where it's composing.</p>
+
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">01</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo1.jpg" alt="Streets in Color — 01">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">02</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo2.jpg" alt="Streets in Color — 02">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">03</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo3.jpg" alt="Streets in Color — 03">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">04</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo4.jpg" alt="Streets in Color — 04">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">05</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo5.jpg" alt="Streets in Color — 05">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">06</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo7.jpg" alt="Streets in Color — 06">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">07</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo8.jpg" alt="Streets in Color — 07">
+      </div>
+      <div class="num-row">
+        <div class="num-side"><span class="seq-num">08</span><p class="img-caption">Street</p></div>
+        <img class="expandable" loading="lazy" src="../images/streets-in-color/owen-street-photo9.jpg" alt="Streets in Color — 08">
+      </div>
+
+    </article>
+
+    <nav class="next-project">
+      <span class="label">Next</span>
+      <a href="people-of-telegraph.html">People of Telegraph →</a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Owen Nguyen</span>
+    <span><a href="mailto:owenportnguyen@icloud.com">owenportnguyen@icloud.com</a></span>
+  </footer>
+
   <script src="../cursor.js"></script>
 
 </body>
