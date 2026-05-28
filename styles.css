@@ -436,18 +436,11 @@ body {
 
 .next-project {
   border-top: 1px solid var(--rule);
-  padding: 64px 0;
+  padding: 20px 0 56px;
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
 }
-.next-project .label {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+.project-body .num-row:last-child { margin-bottom: 0; }
 .next-project a {
   font-family: var(--serif);
   font-size: clamp(28px, 4vw, 48px);
