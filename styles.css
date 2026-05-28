@@ -597,6 +597,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-left: 76px;
+  padding-top: 20px;
 }
 .contact-heading {
   font-family: "Archivo", sans-serif;
