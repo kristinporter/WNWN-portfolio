@@ -53,6 +53,25 @@ body {
   transition: opacity .15s ease, width .2s ease, height .2s ease;
 }
 .cursor--hidden { opacity: 0; }
+.cursor-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  font-family: "Archivo", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  transform: translate(14px, -50%);
+  white-space: nowrap;
+  z-index: 10001;
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+.cursor-label.visible { opacity: 1; }
 /* Respect users who prefer less motion / want their normal cursor back. */
 @media (prefers-reduced-motion: reduce), (hover: none) {
   html, body, a, button { cursor: auto; }
