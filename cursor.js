@@ -36,7 +36,7 @@
     }
   });
   document.addEventListener('mouseout', (e) => {
-    if (e.target.matches('.expandable')) {
+    if (e.target.matches('.expandable') && !document.querySelector('.lightbox.open')) {
       label.classList.remove('visible');
     }
   });
