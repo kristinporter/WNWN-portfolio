@@ -173,6 +173,7 @@
       text-transform: uppercase;
       line-height: 1;
       margin: 0 0 6px;
+      color: #e070b8;
     }
     .photo-label-cat {
       font-size: 11px;
@@ -306,7 +307,7 @@
         images: [
           "images/Telegraph_cover.jpg",
           "images/telegraph-project/owennguyen.indept1.jpg",
-          "images/telegraph-project/owennguyen.indept2.jpg",
+          { src: "images/telegraph-project/owennguyen.indept2.jpg", position: "center top" },
           "images/telegraph-project/owennguyen.indept3.jpg",
         ]
       },
@@ -383,10 +384,11 @@
       section.dataset.index = pi;
 
       const imgs = [];
-      proj.images.forEach((src, ii) => {
+      proj.images.forEach((entry, ii) => {
         const img = document.createElement('img');
-        img.src = src;
+        img.src = typeof entry === 'string' ? entry : entry.src;
         img.alt = proj.title;
+        if (typeof entry === 'object' && entry.position) img.style.objectPosition = entry.position;
         if (ii === 0) img.classList.add('visible');
         section.appendChild(img);
         imgs.push(img);

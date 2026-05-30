@@ -176,6 +176,7 @@ body {
 .nav a:hover { opacity: 0.6; }
 .nav a[aria-current="page"] {
   text-decoration: none;
+  color: #e070b8;
 }
 .nav a[aria-current="page"]::before { content: '['; margin-right: 2px; }
 .nav a[aria-current="page"]::after  { content: ']'; margin-left:  2px; }
