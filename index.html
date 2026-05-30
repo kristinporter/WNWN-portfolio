@@ -9,110 +9,464 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Homepage split layout ── */
+    html, body { height: 100%; overflow: hidden; }
+    body { display: flex; flex-direction: column; }
+
+    .home-wrap {
+      display: grid;
+      grid-template-columns: 62% 38%;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ── Right: index panel ── */
+    .home-left {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--rule);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .home-header {
+      padding: 24px clamp(20px, 3vw, 40px) 16px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+    .home-header .logo {
+      display: block;
+      font-family: var(--sans);
+      font-size: clamp(52px, 7.5vw, 120px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.88;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .home-index {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(20px, 3vw, 40px);
+      gap: 6px;
+    }
+
+    .home-index-item {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+      cursor: default;
+    }
+
+    .home-index-num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: color 0.3s ease;
+    }
+
+    .home-index-title {
+      font-family: var(--sans);
+      font-size: clamp(16px, 2vw, 26px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+    .home-index-title:hover {
+      color: var(--ink);
+    }
+
+    .home-index-item.active .home-index-num,
+    .home-index-item.active .home-index-title {
+      color: var(--ink);
+    }
+    .home-index-item.active {
+      border-bottom-color: var(--rule);
+    }
+
+    .home-index-cat {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+    }
+    .home-index-item.active .home-index-cat {
+      opacity: 1;
+      max-height: 20px;
+    }
+
+    .home-footer {
+      padding: 20px clamp(20px, 3vw, 40px);
+      border-top: 1px solid var(--rule);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* ── Left: scrollable photo column ── */
+    .home-photos {
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      height: 100%;
+      scrollbar-width: none;
+    }
+    .home-photos::-webkit-scrollbar { display: none; }
+
+    .home-photo-section {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      background: var(--ink);
+      scroll-snap-align: start;
+    }
+
+    .home-photo-section img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+    .home-photo-section img.visible {
+      opacity: 1;
+    }
+
+    /* project title overlay at bottom of each photo section */
+    .photo-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 32px 36px;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+      color: #fff;
+      pointer-events: none;
+    }
+    .photo-label-title {
+      font-family: var(--sans);
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin: 0 0 6px;
+    }
+    .photo-label-cat {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin: 0;
+    }
+
+    /* clickable overlay */
+    .photo-label-link {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    /* scroll hint */
+    .home-wrap { position: relative; }
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: calc(62% - 72px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      z-index: 20;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.7s ease;
+    }
+    .scroll-hint.hidden { opacity: 0; }
+    .scroll-hint-text {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+    .scroll-hint-line {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-hint-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.85);
+      animation: scrollline 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollline {
+      0%   { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 720px) {
+      .home-wrap { grid-template-columns: 1fr; }
+      .home-left { position: relative; height: auto; border-right: none; border-bottom: 1px solid var(--rule); }
+      .home-index { justify-content: flex-start; }
+      .home-photo-section { height: 80vw; }
+    }
+  </style>
 </head>
 <body>
 
-
-  <header class="site-header">
-    <a href="index.html" class="logo">Owen Nguyen</a>
-    <div class="header-right">
-      <nav class="nav">
-        <a href="index.html" aria-current="page">Gallery</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>OWEN NGUYEN</span><span class="marquee-dot">·</span>
+      <span>PHOTOGRAPHY</span><span class="marquee-dot">·</span>
+      <span>GRAPHIC DESIGN</span><span class="marquee-dot">·</span>
+      <span>BERKELEY CA</span><span class="marquee-dot">·</span>
+      <span>2026</span><span class="marquee-dot">·</span>
+      <span>OWEN NGUYEN</span><span class="marquee-dot">·</span>
+      <span>PHOTOGRAPHY</span><span class="marquee-dot">·</span>
+      <span>GRAPHIC DESIGN</span><span class="marquee-dot">·</span>
+      <span>BERKELEY CA</span><span class="marquee-dot">·</span>
+      <span>2026</span><span class="marquee-dot">·</span>
+      <span>OWEN NGUYEN</span><span class="marquee-dot">·</span>
+      <span>PHOTOGRAPHY</span><span class="marquee-dot">·</span>
+      <span>GRAPHIC DESIGN</span><span class="marquee-dot">·</span>
+      <span>BERKELEY CA</span><span class="marquee-dot">·</span>
+      <span>2026</span><span class="marquee-dot">·</span>
     </div>
-  </header>
+  </div>
 
-  <main class="gallery-stage">
+  <div class="home-wrap">
 
-    <div class="cover-row">
-      <button class="nav-arrow prev" aria-label="Previous project">
-        <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="60,0 30,20 60,40"/>
-          <polygon points="30,0 0,20 30,40"/>
-        </svg>
-      </button>
+    <!-- Left: scrollable photos -->
+    <div class="home-photos" id="home-photos"></div>
 
-      <div class="cover-area">
-        <a id="cover-link" class="cover" href="projects/sample-project.html">
-          <span class="cover-placeholder" id="cover-placeholder">PROJECT COVER</span>
-          <img id="cover-img" src="" alt="" onerror="this.style.display='none'">
-        </a>
-      </div>
-
-      <button class="nav-arrow next" aria-label="Next project">
-        <svg viewBox="0 0 60 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="0,0 30,20 0,40"/>
-          <polygon points="30,0 60,20 30,40"/>
-        </svg>
-      </button>
+    <!-- Scroll hint overlay, pinned to bottom-right of photo panel -->
+    <div class="scroll-hint" id="scroll-hint">
+      <span class="scroll-hint-text">Scroll</span>
+      <div class="scroll-hint-line"></div>
     </div>
 
-    <div class="cover-meta">
-      <div class="progress">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
-      <h2 class="project-title" id="project-title">PROJECT TITLE</h2>
-      <p class="project-category" id="project-category">project category</p>
+    <!-- Right: sticky index -->
+    <div class="home-left">
+
+      <header class="home-header">
+        <a href="index.html" class="logo">Owen<br>Nguyen</a>
+        <nav class="nav">
+          <a href="index.html" aria-current="page">Gallery</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <div class="home-index" id="home-index"></div>
+
+      <footer class="home-footer">© 2026 Owen Nguyen</footer>
+
     </div>
 
-  </main>
+  </div>
 
   <script>
-    // Edit this array to add, remove, or reorder projects.
     const projects = [
-      { title: "People of Telegraph",  category: "Documentary · Portrait",   image: "images/Telegraph_cover.jpg",                          url: "projects/people-of-telegraph.html" },
-      { title: "Family",              category: "Documentary · Portrait",   image: "images/family/family-project-photo-cover.jpg",       url: "projects/family.html" },
-      { title: "Studio Portraits",    category: "Portrait · Studio",        image: "images/portrait-photography/portrait-photography-cover.jpg", url: "projects/studio-portraits.html" },
-      { title: "Self Portraits",      category: "Self Portrait · Motion",   image: "images/self-portraits/self-portraits-cover-photo.jpg", url: "projects/self-portraits.html" },
-      { title: "Streets in Color",    category: "Street · Color",           image: "images/streets-in-color/photo-cover.jpg",             url: "projects/streets-in-color.html" },
+      {
+        title: "People of Telegraph",
+        category: "Documentary · Portrait",
+        url: "projects/people-of-telegraph.html",
+        images: [
+          "images/Telegraph_cover.jpg",
+          "images/telegraph-project/owennguyen.indept1.jpg",
+          "images/telegraph-project/owennguyen.indept2.jpg",
+          "images/telegraph-project/owennguyen.indept3.jpg",
+        ]
+      },
+      {
+        title: "Family",
+        category: "Documentary · Portrait",
+        url: "projects/family.html",
+        images: [
+          "images/family/family-project-photo-cover.jpg",
+          "images/family/owennguyen.wrkxfam1.jpg",
+          "images/family/owennguyen.wrkxfam2.jpg",
+          "images/family/owennguyen.wrkxfam5.jpg",
+        ]
+      },
+      {
+        title: "Studio Portraits",
+        category: "Portrait · Studio",
+        url: "projects/studio-portraits.html",
+        images: [
+          "images/portrait-photography/portrait-photography-cover.jpg",
+          "images/portrait-photography/studio2-owen1.jpg",
+          "images/portrait-photography/studio2-owen2.jpg",
+          "images/portrait-photography/studio2-owen3.jpg",
+        ]
+      },
+      {
+        title: "Self Portraits",
+        category: "Self Portrait · Motion",
+        url: "projects/self-portraits.html",
+        images: [
+          "images/self-portraits/self-portraits-cover-photo.jpg",
+          "images/self-portraits/owennguyenmotion1.jpg",
+          "images/self-portraits/owennguyenmotion2.jpg",
+          "images/self-portraits/owennguyenmotion3.jpg",
+        ]
+      },
+      {
+        title: "Streets in Color",
+        category: "Street · Color",
+        url: "projects/streets-in-color.html",
+        images: [
+          "images/streets-in-color/photo-cover.jpg",
+          "images/streets-in-color/owen-street-photo1.jpg",
+          "images/streets-in-color/owen-street-photo2.jpg",
+          "images/streets-in-color/owen-street-photo3.jpg",
+        ]
+      },
     ];
 
-    const coverImg     = document.getElementById('cover-img');
-    const coverLink    = document.getElementById('cover-link');
-    const placeholder  = document.getElementById('cover-placeholder');
-    const titleEl      = document.getElementById('project-title');
-    const categoryEl   = document.getElementById('project-category');
-    const fillEl       = document.getElementById('progress-fill');
-    const prevBtn      = document.querySelector('.prev');
-    const nextBtn      = document.querySelector('.next');
+    // ── Build left index ──
+    const indexEl = document.getElementById('home-index');
+    const indexItems = [];
+    projects.forEach((proj, i) => {
+      const item = document.createElement('div');
+      item.className = 'home-index-item' + (i === 0 ? ' active' : '');
+      item.innerHTML = `
+        <span class="home-index-num">0${i + 1}</span>
+        <div>
+          <a class="home-index-title" href="${proj.url}">${proj.title}</a>
+          <p class="home-index-cat">${proj.category}</p>
+        </div>
+      `;
+      indexEl.appendChild(item);
+      indexItems.push(item);
+    });
 
-    let current = 0;
+    // ── Section builder ──
+    const photosEl = document.getElementById('home-photos');
+    const sectionData = new Map(); // section el → { pi, imgs, timer }
 
-    function render() {
-      const p = projects[current];
-      coverImg.style.display = '';
-      coverImg.src = p.image;
-      coverImg.alt = p.title;
-      coverLink.href = p.url;
-      placeholder.textContent = p.title.toUpperCase();
-      titleEl.textContent = p.title.toUpperCase();
-      categoryEl.textContent = p.category;
+    function buildSection(proj, pi) {
+      const section = document.createElement('div');
+      section.className = 'home-photo-section';
+      section.dataset.index = pi;
 
-      // Progress bar: a 1/N-wide segment slides left-to-right
-      const segWidth = 100 / projects.length;
-      fillEl.style.left  = (current * segWidth) + '%';
-      fillEl.style.width = segWidth + '%';
+      const imgs = [];
+      proj.images.forEach((src, ii) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = proj.title;
+        if (ii === 0) img.classList.add('visible');
+        section.appendChild(img);
+        imgs.push(img);
+      });
+
+      const link = document.createElement('a');
+      link.className = 'photo-label-link';
+      link.href = proj.url;
+      section.appendChild(link);
+
+      const label = document.createElement('div');
+      label.className = 'photo-label';
+      label.innerHTML = `
+        <p class="photo-label-title">${proj.title}</p>
+        <p class="photo-label-cat">${proj.category}</p>
+      `;
+      section.appendChild(label);
+
+      sectionData.set(section, { pi, imgs, timer: null });
+      return section;
     }
 
-    prevBtn.addEventListener('click', () => {
-      current = (current - 1 + projects.length) % projects.length;
-      render();
-    });
+    // Build two full sets so the loop has room to jump back seamlessly
+    for (let pass = 0; pass < 2; pass++) {
+      projects.forEach((proj, pi) => photosEl.appendChild(buildSection(proj, pi)));
+    }
 
-    nextBtn.addEventListener('click', () => {
-      current = (current + 1) % projects.length;
-      render();
-    });
+    // ── Per-section cycling ──
+    function startCycle(section) {
+      const d = sectionData.get(section);
+      if (d.timer) return;
+      let idx = 0;
+      d.timer = setInterval(() => {
+        d.imgs.forEach(img => img.classList.remove('visible'));
+        idx = (idx + 1) % d.imgs.length;
+        d.imgs[idx].classList.add('visible');
+      }, 3800);
+    }
 
-    // Keyboard support
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft')  prevBtn.click();
-      if (e.key === 'ArrowRight') nextBtn.click();
-    });
+    function stopCycle(section) {
+      const d = sectionData.get(section);
+      clearInterval(d.timer);
+      d.timer = null;
+    }
 
-    render();
+    // ── IntersectionObserver ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const d = sectionData.get(entry.target);
+        if (!d) return;
+        if (entry.isIntersecting) {
+          indexItems.forEach(el => el.classList.remove('active'));
+          indexItems[d.pi].classList.add('active');
+          startCycle(entry.target);
+        } else {
+          stopCycle(entry.target);
+          d.imgs.forEach((img, i) => img.classList.toggle('visible', i === 0));
+        }
+      });
+    }, { root: photosEl, threshold: 0.5 });
+
+    sectionData.forEach((_, section) => observer.observe(section));
+
+    // ── Scroll hint — hide after first scroll ──
+    const hint = document.getElementById('scroll-hint');
+    photosEl.addEventListener('scroll', () => {
+      hint.classList.add('hidden');
+    }, { passive: true, once: true });
+
+    // ── Infinite scroll: jump back seamlessly when past the first full set ──
+    let jumping = false;
+    photosEl.addEventListener('scroll', () => {
+      if (jumping) return;
+      const halfH = photosEl.scrollHeight / 2;
+      if (photosEl.scrollTop >= halfH) {
+        jumping = true;
+        photosEl.scrollTo({ top: photosEl.scrollTop - halfH, behavior: 'instant' });
+        requestAnimationFrame(() => { jumping = false; });
+      }
+    }, { passive: true });
   </script>
 
   <script src="cursor.js"></script>

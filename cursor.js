@@ -42,24 +42,48 @@
   });
 })();
 
-// Lightbox — click any .expandable image to view it full-size.
+// Lightbox — click any .expandable image to view full-size, with prev/next navigation.
 (function () {
   const overlay = document.createElement('div');
   overlay.className = 'lightbox';
+
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'lightbox-arrow lightbox-prev';
+  prevBtn.textContent = '←';
+  prevBtn.setAttribute('aria-label', 'Previous image');
+
   const img = document.createElement('img');
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'lightbox-arrow lightbox-next';
+  nextBtn.textContent = '→';
+  nextBtn.setAttribute('aria-label', 'Next image');
+
+  overlay.appendChild(prevBtn);
   overlay.appendChild(img);
+  overlay.appendChild(nextBtn);
   document.body.appendChild(overlay);
+
+  let images = [];
+  let currentIndex = 0;
 
   function getLabel() { return document.querySelector('.cursor-label'); }
 
-  function openLightbox(src, alt) {
-    img.src = src;
-    img.alt = alt || '';
+  function show(index) {
+    currentIndex = (index + images.length) % images.length;
+    img.src = images[currentIndex].src;
+    img.alt = images[currentIndex].alt || '';
+  }
+
+  function openLightbox(index) {
+    images = Array.from(document.querySelectorAll('.expandable'));
+    show(index);
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     const label = getLabel();
     if (label) { label.textContent = 'close'; label.classList.add('visible'); }
   }
+
   function closeLightbox() {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
@@ -67,10 +91,39 @@
     if (label) { label.classList.remove('visible'); }
   }
 
+  prevBtn.addEventListener('click', e => { e.stopPropagation(); show(currentIndex - 1); });
+  nextBtn.addEventListener('click', e => { e.stopPropagation(); show(currentIndex + 1); });
+
+  // Hide the cursor label when hovering the arrows so "close" doesn't show.
+  [prevBtn, nextBtn].forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      const label = getLabel();
+      if (label) label.classList.remove('visible');
+    });
+    btn.addEventListener('mouseleave', () => {
+      const label = getLabel();
+      if (label && overlay.classList.contains('open')) {
+        label.textContent = 'close';
+        label.classList.add('visible');
+      }
+    });
+  });
+
   overlay.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  show(currentIndex - 1);
+    if (e.key === 'ArrowRight') show(currentIndex + 1);
+  });
+
   document.addEventListener('click', e => {
     const target = e.target.closest('.expandable');
-    if (target) { e.preventDefault(); openLightbox(target.src, target.alt); }
+    if (target) {
+      e.preventDefault();
+      images = Array.from(document.querySelectorAll('.expandable'));
+      openLightbox(images.indexOf(target));
+    }
   });
 })();

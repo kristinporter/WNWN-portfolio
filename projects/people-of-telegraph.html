@@ -8,6 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* First portrait image — head near top, anchor crop there on landscape screens */
+    @media (min-aspect-ratio: 4/3) {
+      .img-01 {
+        height: 90vh;
+        width: 100%;
+        object-fit: cover;
+        object-position: center 10%;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -30,7 +41,7 @@
 
       <div class="num-row">
         <div class="num-side"><span class="seq-num">01</span><p class="img-caption">People of Telegraph</p></div>
-        <img class="expandable" loading="lazy" src="../images/telegraph-project/owennguyen.indept1.jpg" alt="People of Telegraph — 01">
+        <img class="expandable img-01" loading="lazy" src="../images/telegraph-project/owennguyen.indept1.jpg" alt="People of Telegraph — 01">
       </div>
       <div class="num-row">
         <div class="num-side"><span class="seq-num">02</span><p class="img-caption">People of Telegraph</p></div>
